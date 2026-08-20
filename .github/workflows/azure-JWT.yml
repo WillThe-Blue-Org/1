@@ -1,0 +1,21 @@
+name: Azure OIDC Login Reusable
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  authenticate:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Authenticate to Azure via OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ee5f9d1b-bef2-4eed-bc51-d9d953cb6f86
+          tenant-id: 16b3c013-d300-468d-ac64-7eda0820b6d3
+          subscription-id: 88e47dea-54e3-4ef8-a22d-0aab84b73fc5
+
+      - name: Run Azure CLI Command
+        run: az account show
